@@ -1,5 +1,5 @@
 
-const PrimaryButton = ({className, type, children}) => {
+const Button = ({className, type, children}) => {
   return (
     <button className={className} type={type}>
         {children}
@@ -7,4 +7,4 @@ const PrimaryButton = ({className, type, children}) => {
   )
 }
 
-export default PrimaryButton
+export default Button

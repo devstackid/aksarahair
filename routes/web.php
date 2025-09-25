@@ -22,21 +22,39 @@ use Inertia\Inertia;
 Route::middleware([OnlyPelangganOrGuest::class])->group(function () {
     Route::get('/', [LandingController::class, 'index'])
         ->name('index')
-        ->middleware('throttle:20,1'); // max 20 request per menit
+        ->middleware('throttle:50,1'); 
+    Route::get('/about', [LandingController::class, 'about'])
+        ->name('about')
+        ->middleware('throttle:50,1'); 
+    Route::get('/teams', [LandingController::class, 'teams'])
+        ->name('teams')
+        ->middleware('throttle:50,1'); 
+    Route::get('/pricelist', [LandingController::class, 'pricelist'])
+        ->name('pricelist')
+        ->middleware('throttle:50,1'); 
+    Route::get('/gallery', [LandingController::class, 'gallery'])
+        ->name('gallery')
+        ->middleware('throttle:50,1'); 
+    Route::get('/review', [LandingController::class, 'review'])
+        ->name('review')
+        ->middleware('throttle:50,1'); 
+    Route::get('/product', [LandingController::class, 'product'])
+        ->name('product')
+        ->middleware('throttle:50,1'); 
 
     Route::get('/reservation', [LandingController::class, 'reservation'])
         ->name('reservation')
-        ->middleware('throttle:20,1'); // max 20 request per menit
+        ->middleware('throttle:50,1'); 
 
     Route::post('/reservation/store', [LandingController::class, 'store'])
         ->name('reservation.store')
-        ->middleware('throttle:20,1'); // max 3 request per menit
+        ->middleware('throttle:50,1'); 
 
-    Route::get('/reservation/history/{reservation}', [LandingController::class, 'history'])
-        ->name('history')
-        ->middleware('throttle:100,1'); // max 5 request per menit
+    // Route::get('/reservation/history/{reservation}', [LandingController::class, 'history'])
+    //     ->name('history')
+    //     ->middleware('throttle:50,1'); 
 
-        Route::post('/review/store', [LandingController::class, 'reviewStore'])->name('review.store')->middleware('throttle:10,1');
+        Route::post('/review/store', [LandingController::class, 'reviewStore'])->name('review.store')->middleware('throttle:20,1');
 
         Route::get('/api/reviews/fetch', [LandingController::class, 'fetchReviews']);
 });
@@ -48,13 +66,13 @@ Route::middleware('guest')->group(function () {
         return Inertia::render('Auth/Login', [
             'canLogin' => Route::has('login')
         ]);
-    })->name('login')->middleware('throttle:5,1');
+    })->name('login')->middleware('throttle:50,1');
 
     Route::get('/auth/redirect/{provider}', [OAuthController::class, 'redirect']);
     Route::get('/auth/callback/{provider}', [OAuthController::class, 'callback']);
 });
 
-Route::get('/api/reservations', [ReservationController::class, 'fetchHours'])->middleware('throttle:30,1');
+Route::get('/api/reservations', [ReservationController::class, 'fetchHours'])->middleware('throttle:50,1');
 
 
 Route::middleware('auth', 'web')->group(function () {

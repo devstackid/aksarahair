@@ -1,0 +1,1 @@
+import{j as r}from"./app-B6pI1jbm.js";const o=({galleries:s})=>r.jsx("section",{id:"gallery",className:"px-5 lg:px-20 mt-10 py-10 grid grid-col-2 md:grid-cols-3 lg:grid-cols-4 gap-2",children:s.map((l,e)=>r.jsx("img",{src:`/storage/${l.image}`,alt:`Gallery ${l.id}`,className:"w-full h-full object-cover rounded-lg"},e))});export{o as default};

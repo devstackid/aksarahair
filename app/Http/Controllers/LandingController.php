@@ -41,6 +41,68 @@ class LandingController extends Controller
         
     }
 
+    public function about()
+    {
+
+        return Inertia::render('Landing/About', [
+            'pricelists' => Pricelist::count(),
+            'config' => Config::latest()->first(),
+            'teams' => Employee::all(),
+            'reviews' => Testimonial::count()
+        ]);
+        
+    }
+    public function teams()
+    {
+
+        return Inertia::render('Landing/Teams', [
+            'teams' => Employee::all(),
+        ]);
+        
+    }
+
+    public function pricelist()
+    {
+
+        $pricelists = Pricelist::with('items')->get();
+
+        return Inertia::render('Landing/Pricelist', [
+            'pricelists' => $pricelists,
+            'config' => Config::latest()->first(),
+        ]);
+        
+    }
+
+    public function gallery()
+    {
+
+        $galleries = Gallery::latest()->take(8)->get();
+
+        return Inertia::render('Landing/Gallery', [
+            'galleries' => $galleries,
+        ]);
+        
+    }
+
+    public function review()
+    {
+
+        return Inertia::render('Landing/Review');
+        
+    }
+
+    public function product()
+    {
+
+        $products = Product::latest()->take(10)->get();
+
+
+        return Inertia::render('Landing/Product', [
+            'products' => $products,
+        ]);
+        
+    }
+
     public function fetchReviews(Request $request)
     {
         $sort = $request->get('sort', 'recent');

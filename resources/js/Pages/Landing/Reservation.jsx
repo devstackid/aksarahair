@@ -1,4 +1,4 @@
-import { Head, Link, useForm, usePage } from "@inertiajs/react";
+import { Head, Link, useForm } from "@inertiajs/react";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -11,17 +11,22 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { FaChevronLeft } from "react-icons/fa6";
 import SkeletonComponent from "./Components/Skeleton";
 import { Spinner } from "@radix-ui/themes";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
 const HOURS_AHEAD = 5;
 const Reservation = ({ services, employees, config }) => {
     const today = new Date();
+    const [isOpen, setIsOpen] = useState(true);
+
+    const openModal = () => setIsOpen(true);
+    const closeModal = () => setIsOpen(false);
 
     const [isLoadingTime, setIsLoadingTime] = useState(false);
     const [reservedTimes, setReservedTimes] = useState([]);
     const { data, setData, post, processing, reset } = useForm({
         customer_name: "",
         customer_phone: "",
-        customer_email: "",
         date: today.toLocaleDateString("sv-SE"), // format YYYY-MM-DD
     date_display: today.toLocaleDateString("id-ID", {
         weekday: "long",
@@ -175,13 +180,12 @@ Terima kasih`;
                 "_blank"
             );
 
-            window.location.href = `/reservation/history/${id}`;
+            window.location.href = `/`;
         } catch (error) {
             const errors = error.response?.data?.errors || {};
             const firstError =
                 errors.customer_name ||
                 errors.customer_phone ||
-                errors.customer_email ||
                 errors.date ||
                 errors.time ||
                 errors.service_id ||
@@ -315,6 +319,8 @@ Terima kasih`;
     return (
         <GuestLayout>
             <Head title="Buat Reservasi" />
+
+            
 
             <div className="px-5 lg:px-20 sticky top-0 flex items-center bg-white shadow md:shadow-none z-[800] justify-between border-gray-100 border-b h-[55px]">
                 <div className="flex items-center gap-3">
@@ -643,25 +649,7 @@ Terima kasih`;
                             
                         </div>
 
-                        <div>
-                            <label
-                                htmlFor="customer_email"
-                                className="text-xs font-medium text-black mb-2 block"
-                            >
-                                Email (Opsional)
-                            </label>
-                            <input
-                                type="email"
-                                className="w-full border rounded-3xl py-2.5 px-2 text-xs font-[Montreal-Book] tracking-wide text-black"
-                                id="customer_email"
-                                name="customer_email"
-                                autoComplete="off"
-                                value={data.customer_email}
-                                onChange={(e) =>
-                                    setData("customer_email", e.target.value)
-                                }
-                            />
-                        </div>
+                        
                     </div>
                     <div className="w-full border border-gray-100 bg-white rounded-3xl p-7">
                         <div className="mb-5">
@@ -689,14 +677,6 @@ Terima kasih`;
                                 {data.customer_phone
                                     ? data.customer_phone
                                     : "-"}
-                            </div>
-                        </div>
-                        <div className="border-b border-neutral-50 pb-2 mb-2">
-                            <div className="text-xs font-[Montreal-Book] tracking-wide text-black mb-1">
-                                Email
-                            </div>
-                            <div className="text-end text-xs font-[Montreal-Medium] tracking-wide text-black capitalize">
-                                {data.email ? data.email : "-"}
                             </div>
                         </div>
                         <div className="border-b border-neutral-50 pb-2 mb-2">
@@ -774,6 +754,101 @@ Terima kasih`;
                     </div>
                 </div>
             </form>
+
+            <div className="fixed z-[999] bottom-20 md:bottom-10 md:right-10 right-5">
+                            <button
+                                onClick={openModal}
+                                type="button"
+                                className="flex flex-col items-center justify-center group bg-white shadow-xl rounded-full w-16 h-16"
+                            >
+                                <img src="/assets/ask.png" width={20} alt="" />
+                                <span className="text-xs font-[Montreal-Medium] text-black/80 group-hover:text-blue-700">
+                                    Panduan
+                                </span>
+                            </button>
+                        </div>
+
+                        {/* Modal */}
+            <AnimatePresence>
+                {isOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[900]"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={closeModal}
+                        />
+
+                        {/* Modal Content */}
+                        <motion.div
+                            className="fixed inset-0 z-[999] flex items-center justify-center p-4"
+                            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            onClick={closeModal}
+                        >
+                            <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6 relative">
+                                {/* Close Button */}
+                                <button
+                                    onClick={closeModal}
+                                    className="absolute top-3 right-3 p-2 rounded-full hover:bg-gray-100"
+                                >
+                                    <X className="w-5 h-5 text-gray-600" />
+                                </button>
+
+                                <h2 className="text-xl font-[Montreal-medium] mb-4 text-gray-800">
+                                    Ketentuan Reservasi
+                                </h2>
+                                <ol className="list-decimal list-inside space-y-2 text-black font-[Montreal-Book] tracking-wide text-sm leading-relaxed">
+                                    <li>
+                                        Booking / Reservasi layanan dapat
+                                        dilakukan minimal <strong>5 jam</strong>{" "}
+                                        dari waktu saat ini.
+                                    </li>
+                                    <li>
+                                        Waktu dimulai dari pukul{" "}
+                                        <strong>10:00</strong> sampai{" "}
+                                        <strong>21:00</strong>.
+                                    </li>
+                                    <li>
+                                        Pilih hair artist / designer, pilih
+                                        layanan, atur tanggal & waktu reservasi,
+                                        isi form reservasi, lalu tekan tombol
+                                        konfirmasi. Anda akan diarahkan menuju
+                                        WhatsApp.
+                                    </li>
+                                    <li>
+                                        Tunggu chat konfirmasi dari admin. Jika
+                                        tidak menerima konfirmasi maka
+                                        booking/reservasi belum terdaftar.
+                                    </li>
+                                    <li>
+                                        Admin akan mengkonfirmasi status
+                                        reservasi anda.
+                                    </li>
+                                    <li>
+                                        Wajib datang <strong>5-10 menit</strong>{" "}
+                                        sebelum waktu yang telah ditentukan.
+                                        Apabila terlambat 5 menit dari jam
+                                        booking, otomatis mengikuti antrian
+                                        berikutnya.
+                                    </li>
+                                </ol>
+
+                                <button
+                                    className="block w-full text-center text-sm font-[Montreal-Medium] mt-5 text-white bg-black rounded-3xl py-2.5 tracking-wide"
+                                    onClick={closeModal}
+                                >
+                                    Mengerti
+                                </button>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </GuestLayout>
     );
 };
