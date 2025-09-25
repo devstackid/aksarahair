@@ -1,0 +1,173 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@theme {
+  --color-bg: #fff;
+  --color-foreground: #0f172a;
+
+  --color-primary: #3b82f6; /* blue-500 */
+  --color-secondary: #a855f7; /* violet-500 */
+  --color-accent: #ff2e92; /* pink */
+  --bg-gradient-primary: linear-gradient(
+    to right,
+    var(--color-accent),
+    var(--color-secondary),
+    var(--color-primary)
+  );
+}
+@font-face
+        {
+            font-family: 'Montreal-Bold';
+            src: url('/fonts/montreal/ppneuemontreal-bold.otf');
+        }
+@font-face
+        {
+            font-family: 'Montreal-Semibold';
+            src: url('/fonts/montreal/ppneuemontreal-semibolditalic.otf');
+        }
+@font-face
+        {
+            font-family: 'Montreal-Medium';
+            src: url('/fonts/montreal/ppneuemontreal-medium.otf');
+        }
+@font-face
+        {
+            font-family: 'Montreal-Book';
+            src: url('/fonts/montreal/ppneuemontreal-book.otf');
+        }
+@font-face
+        {
+            font-family: 'Montreal-Thin';
+            src: url('/fonts/montreal/ppneuemontreal-thin.otf');
+        }
+@font-face {
+    font-family: "Jeko";
+    src: url("/fonts/Jeko/Jeko-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-style: normal
+}
+
+@font-face {
+    font-family: "Jeko";
+    src: url("/fonts/Jeko/Jeko-ExtraBold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-style: normal
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter/inter.woff2") format("woff2");
+    /* font-weight: 700; */
+    font-style: normal;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-style: normal
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+.font-jeko {
+  font-family: "Jeko", sans-serif;
+}
+
+.text-beige {
+  color: #f4f3f0;
+}
+
+.bg-beige {
+  background-color: #f4f3f0;
+}
+*, html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body{
+    overflow-x: hidden;
+  }
+
+
+  @layer components {
+    .btn-primary {
+    background-image: var(--bg-gradient-primary);
+  }
+  .btn-gradient-border {
+  
+  border-image: var(--bg-gradient-primary) 1;
+}
+
+  .primary-button-xs {
+    @apply px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700;
+  }
+  .primary-button-sm {
+    @apply px-3 py-2.5 text-sm font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700;
+  }
+  .danger-button-sm {
+    @apply px-3 py-2.5 text-sm font-bold text-white bg-red-600 rounded-md hover:bg-red-700;
+  }
+  .danger-button-xs {
+    @apply px-2 py-1 text-xs font-semibold text-white bg-red-600 rounded-md hover:bg-red-700;
+  }
+  .warning-button-xs {
+    @apply px-2 py-1 text-xs font-semibold text-white bg-orange-600 rounded-md hover:bg-orange-700;
+  }
+  .warning-button-sm {
+    @apply px-3 py-2.5 text-sm font-bold text-white bg-orange-600 rounded-md hover:bg-orange-700;
+  }
+  .yellow-button-xs {
+    @apply px-2 py-1 text-xs font-semibold text-black bg-yellow-400 rounded-md hover:bg-yellow-700;
+  }
+  .yellow-button-sm {
+    @apply px-3 py-2.5 text-sm font-[Montreal-Medium] tracking-wide text-black bg-yellow-400 rounded-md hover:bg-yellow-700;
+  }
+  .success-button-xs {
+    @apply px-2 py-1 text-xs font-semibold text-white bg-green-600 rounded-md hover:bg-green-700;
+  }
+  .success-button-sm {
+    @apply px-3 py-2.5 text-sm font-bold text-white bg-green-600 rounded-md hover:bg-green-700;
+  }
+  .secondary-button-xs {
+    @apply px-2 py-1 text-xs font-semibold text-black shadow rounded-md hover:bg-neutral-200 bg-neutral-100;
+  }
+  .secondary-button-sm {
+    @apply px-3 py-2.5 text-sm font-[Montreal-Medium] tracking-wide text-black shadow rounded-md hover:bg-neutral-200 bg-neutral-100;
+  }
+
+
+
+  @keyframes matrix {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.matrix-animation::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 0, 0.1),
+    rgba(0, 255, 0, 0.1) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  background-size: 100% 4px;
+  animation: matrix 2s linear infinite;
+  opacity: 0.05;
+}
+
+
+
+  
+}
+  
+  
