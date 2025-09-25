@@ -1,0 +1,1 @@
+import{j as n}from"./app-IP2hcn0b.js";function x({value:t,className:e="",children:r,...s}){return n.jsx("label",{...s,className:"block text-xs font-medium text-gray-700 "+e,children:t||r})}export{x as I};
