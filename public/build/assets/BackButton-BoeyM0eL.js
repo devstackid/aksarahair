@@ -1,0 +1,1 @@
+import{j as t,Y as r}from"./app-zpABmS9i.js";const a=({href:e})=>t.jsx(r,{href:e,className:"bg-black font-[Montreal-Medium] tracking-wide inline-block px-3 py-1.5 mb-2 text-xs rounded-xl text-white border border-transparent hover:bg-white hover:text-black hover:border-black transition",children:"Kembali"});export{a as B};

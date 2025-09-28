@@ -1,1 +1,0 @@
-import{j as o,Y as r}from"./app-B6pI1jbm.js";import{c as n}from"./clsx-B-dksMZM.js";const x=({className:t,href:e,children:s})=>o.jsx(r,{className:n("py-2 bg-black px-5 text-white rounded items-center gap-2 transition text-xs tracking-wide font-[Montreal-Bold]",t),href:e,children:s});export{x as L};

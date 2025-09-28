@@ -1,0 +1,1 @@
+import{q as o,j as r}from"./app-zpABmS9i.js";import{c as s}from"./clsx-B-dksMZM.js";function i({children:t}){const{url:e}=o();return r.jsx(r.Fragment,{children:r.jsx("div",{className:s("bg-white md:font-inter h-screen overflow-y-auto z-[60]",e=="/reservation"&&"!bg-neutral-100"),children:t})})}export{i as G};
