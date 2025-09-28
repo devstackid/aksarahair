@@ -161,6 +161,12 @@ Route::middleware('auth', 'web')->group(function () {
         Route::post('/dashboard/gallery/bulk-delete', [GalleryController::class, 'bulkDelete'])->name('dashboard.gallery.bulkDelete');
         Route::delete('/dashboard/gallery/{gallery}', [GalleryController::class, 'destroy'])->name('dashboard.gallery.destroy');
 
+        Route::get('/dashboard/agenda', function(){
+            return Inertia::render('Dashboard/Development');
+        })->name('dashboard.agenda');
+        Route::get('/dashboard/laporan', function(){
+            return Inertia::render('Dashboard/Development');
+        })->name('dashboard.laporan');
 
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -7,10 +7,10 @@ import {
     BiSolidChevronLeft,
 } from "react-icons/bi";
 import { BsBoxSeam, BsGear, BsHouse } from "react-icons/bs";
-import { PiChartPieDuotone, PiHandCoins, PiUserDuotone } from "react-icons/pi";
+import { PiChartPieDuotone, PiFileDocDuotone, PiHandCoins, PiUserDuotone } from "react-icons/pi";
 import { FaBarsStaggered, FaScissors, FaXmark } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
-import { House } from "lucide-react";
+import { Calendar, House } from "lucide-react";
 const menuItems = [
     {
         name: "Overview",
@@ -19,7 +19,7 @@ const menuItems = [
         path: "/dashboard",
     },
     {
-        name: "Akun Pengguna",
+        name: "Akun",
         icon: <PiUserDuotone className="w-4 h-4" />,
         routeName: "dashboard.users",
         path: "/dashboard/users",
@@ -47,6 +47,18 @@ const menuItems = [
         icon: <BiPaperPlane className="w-4 h-4" />,
         routeName: "dashboard.testimonials",
         path: "/dashboard/testimonial",
+    },
+    {
+        name: "Agenda",
+        icon: <Calendar className="w-4 h-4" />,
+        routeName: "dashboard.agenda",
+        path: "/dashboard/agenda",
+    },
+    {
+        name: "Laporan",
+        icon: <PiFileDocDuotone className="w-4 h-4" />,
+        routeName: "dashboard.laporan",
+        path: "/dashboard/laporan",
     },
     {
         name: "Pengaturan",
@@ -138,10 +150,10 @@ export default function AuthenticatedLayout({ children }) {
                             ))}
                         </ul>
 
-                        <div className={clsx("bg-indigo-500/25 w-full py-5 rounded-3xl mt-3 flex flex-col items-center justify-center px-10", !isOpenSidebar && 'hidden' )}>
+                        {/* <div className={clsx("bg-indigo-500/25 w-full py-5 rounded-3xl mt-3 flex flex-col items-center justify-center px-10", !isOpenSidebar && 'hidden' )}>
                             <h1 className="text-xs mb-3 text-black font-[Montreal-Medium] tracking-wide">Butuh Bantuan?</h1>
                             <a href="https://wa.me/62895631780343" target="_blank" className="inline-block w-full py-2 text-center text-xs bg-black font-[Montreal-Medium] tracking-wide text-white hover:bg-white hover:text-black transition border border-black rounded-3xl">Hubungi Kami</a>
-                        </div>
+                        </div> */}
                         </div>
                     </div>
                     <ul className="h-min">

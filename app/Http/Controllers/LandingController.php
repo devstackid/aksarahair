@@ -143,14 +143,12 @@ class LandingController extends Controller
         $validated = $request->validate([
             'customer_name'  => 'required|string|min:0|max:100',
             'customer_phone' => 'required|string|min:0|max:100',
-            'customer_email' => 'nullable|email|min:0|max:100',
             'date'           => 'required|date',
             'time'           => 'required|date_format:H:i',
             'service_id'     => 'required|uuid|exists:services,id',
         ], [
             'customer_name.required'  => 'Nama wajib diisi.',
             'customer_phone.required' => 'Nomor HP wajib diisi.',
-            'customer_email.email'    => 'Format email tidak valid.',
             'date.required'           => 'Tanggal wajib diisi.',
             'time.required'           => 'Jam wajib diisi.',
             'time.date_format'        => 'Format jam harus HH:MM.',
@@ -211,7 +209,6 @@ class LandingController extends Controller
                 'id'                 => Str::uuid(),
                 'customer_name'      => $validated['customer_name'],
                 'customer_phone'     => $validated['customer_phone'],
-                'customer_email'     => $validated['customer_email'] ?: null,
                 'is_conditional_serve' => $is_conditional_serve,
                 'normal_price'       => $normal_price,
                 'weekday_price'      => $weekday_price,

@@ -4,6 +4,7 @@ import LogoWithLink from "@/Components/Atoms/Logo/LogoWithLink";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "@inertiajs/react";
 
 const Navbar = ({ auth }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ const Navbar = ({ auth }) => {
                     <div className="flex items-center justify-between pr-5 md:pr-0">
                         <LogoWithLink
                             className={
-                                "flex items-center gap-3 w-[40px] h-[40px] rounded-full bg-neutral-50 justify-center mx-5 md:mx-0"
+                                "flex items-center gap-3 w-[40px] h-[40px] rounded-full bg-neutral-50 justify-center"
                             }
                             href={route("index")}
                             src={"assets/logo-nexiro.png"}
@@ -58,14 +59,14 @@ const Navbar = ({ auth }) => {
                         Login
                     </LinkButton>
                 ) : (
-                    <LinkButton
+                    <Link
                         method="post"
                         as="button"
-                        className={"md:flex hidden"}
+                        className={"md:flex hidden py-2 bg-black px-5 text-white rounded items-center gap-2 transition text-xs tracking-wide font-[Montreal-Bold]"}
                         href={route("logout")}
                     >
                         Logout
-                    </LinkButton>
+                    </Link>
                 )}
             </div>
 
@@ -116,14 +117,14 @@ const Navbar = ({ auth }) => {
                                         Login
                                     </LinkButton>
                                 ) : (
-                                    <LinkButton
+                                    <Link
                                         method="post"
                                         as="button"
-                                        className={"bg-black w-full block !m-0 px-5 py-2.5 text-white rounded"}
+                                        className={"bg-black w-full block !m-0 px-5 py-2.5 text-white rounded items-center gap-2 transition text-xs tracking-wide font-[Montreal-Bold]"}
                                         href={route("logout")}
                                     >
                                         Logout
-                                    </LinkButton>
+                                    </Link>
                                 )}
                             </div>
                         </motion.div>

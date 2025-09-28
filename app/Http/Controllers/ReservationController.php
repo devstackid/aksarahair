@@ -34,6 +34,7 @@ class ReservationController extends Controller
         $validated = $request->validate([
             'customer_name'  => 'required|string|min:0|max:100',
             'customer_phone' => 'required|string|min:0|max:100',
+            'customer_email' => 'nullable|email|min:0|max:100',
             'date'           => 'required|date',
             'time'           => 'required|date_format:H:i',
             'service_id'     => 'required|uuid|exists:services,id',
@@ -77,6 +78,7 @@ class ReservationController extends Controller
             'id'             => Str::uuid(),
             'customer_name'  => $validated['customer_name'],
             'customer_phone' => $validated['customer_phone'],
+            'customer_email' => $validated['customer_email'],
             'is_conditional_serve' => $is_conditional_serve,
             'normal_price' => $normal_price,
             'weekday_price' => $weekday_price,
